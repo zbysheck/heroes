@@ -1,4 +1,7 @@
 <?php
+/** The engine used by the database */
+define('DB_ENGINE', 'mysql');
+
 /** The name of the database */
 define('DB_NAME', 'herosi');
 
