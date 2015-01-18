@@ -9,4 +9,5 @@ if(!@include 'config.php'){
 	$smarty=new Smarty();
 	$smarty->display('views/header.tpl');
 	$smarty->display('views/login.tpl');
+	include 'database-generator.php';
 }
