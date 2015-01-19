@@ -47,6 +47,11 @@ class battle
         return $msg[$value];
     }
 
+    public function start(){
+        $view=new view();
+        $view->render('index');
+    }
+
 
 
 

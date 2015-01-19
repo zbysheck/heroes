@@ -49,6 +49,7 @@ class login {
     {
         global $db;
         $query=$db->query("SELECT password FROM players WHERE name='$name'");
+        //var_dump($query);echo "errry";
         return $query?$query->fetch():null;
     }
 
@@ -60,9 +61,11 @@ class login {
     public function submitForm()
     {
         var_dump($_POST);
+        var_dump($_SESSION);
         if (isset($_POST["login"])){
             unset($_POST['login']);
-            if($result=$this->login($_POST['name'],$this->translatePassword($_POST['password']))){
+            $result=$this->login($_POST['name'],$this->translatePassword($_POST['password']));
+            if($result==$this->translatePassword($_POST['password'])){
                 $_SESSION['name']=$_POST['name'];
             }else{
                 if($result){

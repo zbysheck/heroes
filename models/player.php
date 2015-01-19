@@ -33,12 +33,11 @@ class player extends model{
     }
 
     private function newPlayer()
-    {echo "yup";
+    {
         global $db;
         $res=$db->exec("INSERT INTO `players`(`name`, `password`, `hp_max`, `xp`, `combo`, `unlocked`, `hpp`) 
             VALUES ('$this->name','$this->password',100,$this->xp,$this->combo,$this->unlocked,$this->hpp)");
         var_dump($res)or die(print_r($db->errorInfo(), true));
-        echo "yup";
     }
 
 
