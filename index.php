@@ -35,7 +35,7 @@ spl_autoload_register('__autoload');
 
 	//$l=new login();
 	//$result=$l->login('zbynioo',34);
-	$view->render('login');
+	//$view->render('login');
 	$view->render('footer');
 	include 'database-generator.php';
 }
