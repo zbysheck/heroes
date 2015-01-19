@@ -6,8 +6,9 @@ if(!@include 'config.php'){
 	var_dump($db);
 
 	require '../libs/Smarty.class.php';
-	$smarty=new Smarty();
-	$smarty->display('views/header.tpl');
-	$smarty->display('views/login.tpl');
+	require 'view.php';
+	$view=new view();
+	$view->render('header');
+	$view->render('login');
 	include 'database-generator.php';
 }
