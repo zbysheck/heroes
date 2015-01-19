@@ -6,5 +6,11 @@
  * @author 
  **/
 class player{
-	
+
+
+
+
+
+
+
 } // END class 

@@ -15,4 +15,9 @@ class view{
 	public function render($name){
 		$this->smarty->display('views/'.$name.'.tpl');
 	}
+
+	public function assign($name, $value)
+	{
+		$this->smarty->assign($name,$value);
+	}
 } // END class view

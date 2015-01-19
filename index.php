@@ -6,10 +6,12 @@ if(!@include 'config.php'){
 
 require 'app.php';
 $app=new app();
-//$app->init();
+$app->init();
 
 	require '../libs/Smarty.class.php';
 	require 'view.php';
+	require '/controllers/battle.php';
+	$battle=new battle();
 	$view=new view();
 	$view->render('header');
 	$view->render('login');

@@ -12,6 +12,11 @@ class battle
 		$b=rand(2,$max);
 		$sol= array($a*$b, ($a+pow(-1,rand(0,1)))*$b,($b+pow(-1,rand(0,1)))*$a);
 		var_dump($sol);
-		include '/../views/battle.tpl';
+		$view=new view();
+		$view->assign('a',$a);
+		$view->assign('b',$b);
+		$view->assign('sol',$sol);
+
+		$view->render('battle');
 	}
 } // END class 
