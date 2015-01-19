@@ -10,6 +10,8 @@ class app{
 	public function init(){
 		$this->getUrl();
 		var_dump($this->url);
+		$this->redirect();
+
 	}
 
 
@@ -19,6 +21,25 @@ class app{
 		$url=explode('/', $url);
 		//var_dump($url);
 		$this->url=$url;
+	}
+
+	public function redirect()
+	{
+		$url=$this->url;
+		echo count($url);
+		switch (count($url)) {
+			case '2':
+				require('controllers/'.$url[0].'.php');
+				echo 'lalabu';
+				$controller=new $url[0];
+echo 'lalabu';
+				$controller->{$url[1]}();
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 	}
 
 
