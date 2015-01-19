@@ -7,8 +7,14 @@
  **/
 class login {
 	function __construct(){
-		$view=new view();
+		$this->view=new view();
 	}
 
-	
+	public function register(){
+		$this->view->render('register');
+	}
+
+	public function login(){
+		$this->view->render('login');
+	}
 } // END class login 

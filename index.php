@@ -4,6 +4,9 @@ if(!@include 'config.php'){
 }else{
 	$db=new PDO(DB_ENGINE.':dbname='.DB_NAME.";host=".DB_HOST, DB_USER, DB_PASSWORD);
 
+require 'app.php';
+$app=new app();
+//$app->init();
 
 	require '../libs/Smarty.class.php';
 	require 'view.php';
