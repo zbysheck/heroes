@@ -4,25 +4,37 @@ if(!@include 'config.php'){
 }else{
 	$db=new PDO(DB_ENGINE.':dbname='.DB_NAME.";host=".DB_HOST, DB_USER, DB_PASSWORD);
 
+require '../libs/Smarty.class.php';
+function __autoload($class_name) 
+{
+    # List all the class directories in the array.
+    $folders = array(
+        'models/', 
+        'views/', 
+        'controllers/',
+        ''
+    );
 
-	require '../libs/Smarty.class.php';
-	require 'view.php';
-	require '/model.php';
-require 'app.php';
-$app=new app();
-$app->init();
-	require '/controllers/battle.php';
-	require '/models/player.php';
-	$p=new player();
-	$battle=new battle();
+    foreach($folders as $path){
+        $file = sprintf('%s%s.php',  $path, $class_name);
+        if(is_file($file)){
+            include_once $file;
+        }
+        //echo $file.'<br>';
+    }
+}
 
-	$l=new login();
-	echo 'la';
-	$result=$l->login('zbynioo',34);
-	var_dump($result);
-	echo 'la';
+spl_autoload_register('__autoload');
+
+
 	$view=new view();
 	$view->render('header');
+
+	$app=new app();
+	$app->init();
+
+	//$l=new login();
+	//$result=$l->login('zbynioo',34);
 	$view->render('login');
 	$view->render('footer');
 	include 'database-generator.php';

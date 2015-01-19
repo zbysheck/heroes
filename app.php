@@ -20,8 +20,12 @@ class app{
 		$url=rtrim($url, '/');
 		$url=explode('/', $url);
 		//var_dump($url);
+		if($url==['']){
+			$url=null;
+		}		
 		$this->url=$url;
 	}
+
 
 	public function redirect()
 	{
@@ -30,14 +34,19 @@ class app{
 		switch (count($url)) {
 			case '2':
 				require('controllers/'.$url[0].'.php');
-				echo 'lalabu';
 				$controller=new $url[0];
-echo 'lalabu';
 				$controller->{$url[1]}();
+				break;
+			case '1':
+				require('controllers/'.$url[0].'.php');
+				$controller=new $url[0];
+				echo "sialala";
+				//$controller->{$url[1]}();
 				break;
 			
 			default:
-				# code...
+				$v=new view();
+				$v->render('index');
 				break;
 		}
 	}
