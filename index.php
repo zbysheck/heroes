@@ -1,8 +1,8 @@
 <?php
 if(!@include 'config.php'){
-	echo "zrobic generator config.php!";//zrobic, serio
+    echo "zrobic generator config.php!";//zrobic, serio
 }else{
-	$db=new PDO(DB_ENGINE.':dbname='.DB_NAME.";host=".DB_HOST, DB_USER, DB_PASSWORD);
+    $db=new PDO(DB_ENGINE.':dbname='.DB_NAME.";host=".DB_HOST, DB_USER, DB_PASSWORD);
 
 require '../libs/Smarty.class.php';
 function __autoload($class_name) 
@@ -26,16 +26,20 @@ function __autoload($class_name)
 
 spl_autoload_register('__autoload');
 
+    $view=new view();
+    $view->render('header');
+    session_start();
+    $sname=isset($_SESSION['name'])?($_SESSION['name']):null;
+    $view->assign('name',$sname);
+    $view->render('panel');
+    //var_dump($_SESSION);
 
-	$view=new view();
-	$view->render('header');
+    $app=new app();
+    $app->init();
 
-	$app=new app();
-	$app->init();
-
-	//$l=new login();
-	//$result=$l->login('zbynioo',34);
-	//$view->render('login');
-	$view->render('footer');
-	//include 'database-generator.php';
+    //$l=new login();
+    //$result=$l->login('zbynioo',34);
+    //$view->render('login');
+    $view->render('footer');
+    //include 'database-generator.php';
 }

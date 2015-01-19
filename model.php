@@ -11,4 +11,13 @@ class model
 	{
 		return get_class($this).'s';
 	}
+
+	public function find($id)
+	{
+		# code...
+	}
+
+	public function delete(){
+		
+	}
 } // END class model 
