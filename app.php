@@ -9,7 +9,7 @@ class app{
 
 	public function init(){
 		$this->getUrl();
-		var_dump($this->url);
+		//var_dump($this->url);
 		$this->redirect();
 
 	}
@@ -33,21 +33,37 @@ class app{
 		echo count($url);
 		switch (count($url)) {
 			case '2':
-				require('controllers/'.$url[0].'.php');
-				$controller=new $url[0];
-				$controller->{$url[1]}();
+				if(file_exists('controllers/'.$url[0].'.php')){
+					require_once('controllers/'.$url[0].'.php');;
+					$controller=new $url[0];
+					if(method_exists($controller,$url[1])){
+						$controller->{$url[1]}();
+					}else{
+						$view=new view();
+						$view->render('error');
+					}
+				}else{
+					$view=new view();
+					$view->render('error');
+				}
 				break;
 			case '1':
-				require('controllers/'.$url[0].'.php');
-				$controller=new $url[0];
-				echo "sialala";
+				if(file_exists('controllers/'.$url[0].'.php')){
+					require('controllers/'.$url[0].'.php');
+					$controller=new $url[0];
+				}else{
+					$view=new view();
+					$view->render('error');
+				}
 				//$controller->{$url[1]}();
 				break;
-			
-			default:
+			case '0':
 				$v=new view();
 				$v->render('index');
 				break;
+			default:
+				$view=new view();
+				$view->render('error');
 		}
 	}
 
